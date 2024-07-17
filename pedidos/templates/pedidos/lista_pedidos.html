@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Pedidos</title>
+</head>
+<body>
+    <h2>Lista de Pedidos</h2>
+    <ul>
+        {% for pedido in pedidos_pendientes %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado: {{ pedido.estado }}</p>
+                <a href="{% url 'aprobar_pedido' pedido.id %}">Aprobar</a>
+                <a href="{% url 'rechazar_pedido' pedido.id %}">Rechazar</a>
+                <a href="{% url 'enviar_pedido' pedido.id %}">Enviar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'productos_disponibles' %}">Ver Productos Disponibles</a>
+
+    <h2>Pedidos revisados</h2>
+    <ul>
+        {% for pedido in pedidos_revisados %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado: {{ pedido.estado }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

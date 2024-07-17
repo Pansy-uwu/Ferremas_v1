@@ -1,0 +1,36 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+</head>
+<body>
+    <h2>Lista de Productos</h2>
+    <div>
+        <h3>Categorías</h3>
+        <ul>
+            {% for categoria in categorias %}
+                <li>
+                    <a href="{% url 'categoria' categoria.slug %}">{{ categoria.nombre }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h3>Productos</h3>
+        <ul>
+            {% for producto in productos %}
+                <li>
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="100">
+                    <h4>{{ producto.nombre }}</h4>
+                    <p>Precio: ${{ producto.precio }} CLP / ${{ producto.precio|div:dolar }} USD</p>
+                    <a href="{% url 'detalle_producto' producto.id %}">Ver Detalle</a>
+                    <a href="{% url 'agregar_al_carrito' producto.id %}">Agregar al Carrito</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'ver_carrito' %}">Ver Carrito</a>
+</body>
+</html>

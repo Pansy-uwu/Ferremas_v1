@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos Disponibles en Bodega</title>
+</head>
+<body>
+    <h2>Productos Disponibles en Bodega</h2>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                <h3>{{ producto.nombre }}</h3>
+                <p>Stock: {{ producto.stock }}</p>
+                <p>Precio: ${{ producto.precio }} CLP</p>
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="100">
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'lista_pedidos' %}">Ver Pedidos</a>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Procesar Pago</title>
+</head>
+<body>
+    <h2>Procesar Pago</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="metodo_entrega">Método de Entrega:</label>
+        <select id="metodo_entrega" name="metodo_entrega" required>
+            <option value="retiro">Retiro en Tienda</option>
+            <option value="despacho">Despacho a Domicilio</option>
+        </select>
+        <div id="direccion_entrega" style="display:none;">
+            <label for="direccion">Dirección de Entrega:</label>
+            <input type="text" id="direccion" name="direccion_entrega">
+        </div>
+        <br>
+        <label for="opcion_pago">Opción de Pago:</label>
+        <select id="opcion_pago" name="opcion_pago" required>
+            <option value="debito">Débito</option>
+            <option value="credito">Crédito</option>
+            <option value="transferencia">Transferencia</option>
+        </select>
+        <br>
+        <button type="submit">Pagar</button>
+    </form>
+
+    <script>
+        document.getElementById('metodo_entrega').addEventListener('change', function () {
+            var display = this.value == 'despacho' ? 'block' : 'none';
+            document.getElementById('direccion_entrega').style.display = display;
+        });
+    </script>
+</body>
+</html>

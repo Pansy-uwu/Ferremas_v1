@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vista Bodeguero</title>
+</head>
+<body>
+    <h1>Vista Bodeguero</h1>
+    <h2>Lista de Pedidos</h2>
+    <ul>
+        {% for pedido in pedidos %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado: {{ pedido.estado }}</p>
+                {% if pedido.estado == 'pendiente' or pedido.estado == 'aprobado' %}
+                    <a href="{% url 'aceptar_pedido' pedido.id %}">Aceptar y Preparar</a>
+                {% elif pedido.estado == 'preparado' %}
+                    <a href="{% url 'entregar_pedido' pedido.id %}">Entregar a Vendedor</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Pedidos Entregados</h2>
+    <ul>
+        {% for pedido in pedidos_entregados %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado: {{ pedido.estado }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Volver al Inicio</a>
+</body>
+</html>

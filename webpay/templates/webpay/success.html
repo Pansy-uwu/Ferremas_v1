@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas - Tienda Online de Herramientas de Construcción</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <h1 class="title">Ferremas</h1>
+    </div>
+
+
+    <div class="transaction-details">
+        <h2>Transacción Exitosa</h2>
+        <p>Tu transacción se ha completado exitosamente. Aquí están los detalles:</p>
+        <p><strong>Orden de compra:</strong> {{ response.buy_order }}</p>
+        <p><strong>Monto:</strong> ${{ response.amount }}</p>
+        <p><strong>Fecha de transacción:</strong> {{ response.transaction_date }}</p>
+        <p><strong>Estado:</strong> {{ response.status }}</p>
+    </div>
+</body>
+</html>

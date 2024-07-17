@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vista Contador</title>
+</head>
+<body>
+    <h1>Vista Contador</h1>
+
+    <h2>Confirmar Pagos por Transferencia</h2>
+    <ul>
+        {% for pedido in pedidos_transferencia %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado de Pago: {{ pedido.estado_pago }}</p>
+                <a href="{% url 'confirmar_pago' pedido.id %}">Confirmar Pago</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Registrar Entrega de Productos</h2>
+    <ul>
+        {% for pedido in pedidos_entrega %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado: {{ pedido.estado }}</p>
+                <a href="{% url 'registrar_entrega' pedido.id %}">Registrar Entrega</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Pedidos Completados</h2>
+    <ul>
+        {% for pedido in pedidos_completados %}
+            <li>
+                <h3>{{ pedido.producto.nombre }}</h3>
+                <p>Cantidad: {{ pedido.cantidad }}</p>
+                <p>Estado: {{ pedido.estado }}</p>
+                <p>Estado de Pago: {{ pedido.estado_pago }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Volver al Inicio</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Pedido</title>
+</head>
+<body>
+    <h2>Detalle del Pedido #{{ pedido.pk }}</h2>
+    <ul>
+        {% for detalle in detalles %}
+        <li>
+            {{ detalle.producto.nombre }} - Cantidad: {{ detalle.cantidad }} - Precio: ${{ detalle.precio }}
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ pedido.total }}</p>
+</body>
+</html>
